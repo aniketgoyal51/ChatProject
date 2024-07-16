@@ -1,0 +1,35 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.chatarea{
+    width: 300px;
+    height: 500px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.messagearea{
+    border: 1px solid black;
+    width: 300px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    overflow:scroll;
+    text-align: none;
+}
+.message{
+    height: 10px;
+}
+.messagetext{
+    font-size: 18px;
+}
+.time{
+    line-height: 0px;
+    font-size: 11px;
+    margin-top: -8px;
+}
