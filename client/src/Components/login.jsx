@@ -8,14 +8,14 @@ function Login() {
     const navigate=useNavigate()
 
     const onSubmit = async (data) => {
-        await axios.post('http://localhost:1000/login', data)
+        await axios.post(`${import.meta.env.VITE_SERVER_URL}/login`, data)
             .then((res) => {
                 console.log(res)
             })
             .catch((err) => {
                 console.log(err)
             })   
-        await axios.get(`http://localhost:1000/GetCurrentUser/${data.email}`)
+        await axios.get(`${import.meta.env.VITE_SERVER_URL}/GetCurrentUser/${data.email}`)
                 .then((res)=>{
                     localStorage.setItem("userid",res.data._id)
                 })
