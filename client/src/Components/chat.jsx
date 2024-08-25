@@ -32,7 +32,7 @@ function Chat() {
     // getting side bar chat users
     useEffect(() => {
         // console.log("data",currentUser)
-        axios.get(`http://localhost:1000/GetUserData/${currentUser}`)
+        axios.get(`${import.meta.env.VITE_SERVER_URL}/GetUserData/${currentUser}`)
             .then((res) => {
                 const data = res.data;
                 setUserData(data);
@@ -51,7 +51,7 @@ function Chat() {
                 if (msg === "") {
                     return
                 }
-                await axios.post(`http://localhost:1000/SendMessage/${recieverid}`, { senderid: localStorage.getItem("userid"), msg })
+                await axios.post(`${import.meta.env.VITE_SERVER_URL}/SendMessage/${recieverid}`, { senderid: localStorage.getItem("userid"), msg })
                     .then((res) => {
                         setMessage([...message, res.data])
                     })
@@ -67,7 +67,7 @@ function Chat() {
     useEffect(() => {
         if (conversation) {
             const run = () => {
-                axios.get(`http://localhost:1000/${conversation._id}`, { params: { senderid: currentUser } })
+                axios.get(`${import.meta.env.VITE_SERVER_URL}/${conversation._id}`, { params: { senderid: currentUser } })
                     .then(async (res) => {
                         // console.log(res.data)
                         setconversationerror(null)

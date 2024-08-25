@@ -10,7 +10,7 @@ function Signup() {
 
     const onSubmit = (data) => {
         console.log(data)
-        axios.post('http://localhost:1000/signup', data)
+        axios.post(`${import.meta.env.VITE_SERVER_URL}/signup`, data)
             .then((res) => {
                 console.log(res.data)
                 if (res.data === "user already exist") {

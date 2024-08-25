@@ -20,7 +20,7 @@ export const SocketContextProvider = ({ children }) => {
         // console.log("fetch",currentUser)
         const fetchData = async () => {
             try {
-                const res = await axios.get(`http://localhost:1000/GetUserDataById/${currentUser}`);
+                const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/GetUserDataById/${currentUser}`);
                 setUserData(res.data);
             } catch (err) {
                 console.error("Error fetching user data:", err);
@@ -32,7 +32,7 @@ export const SocketContextProvider = ({ children }) => {
     useEffect(() => {
         const fetchData =  () => {
             if (userdata) {
-                    const socket = io("http://localhost:1000", {
+                    const socket = io(`${import.meta.env.VITE_SERVER_URL}`, {
                         query: {
                             userid: userdata._id
                         }
