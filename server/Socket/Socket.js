@@ -6,7 +6,7 @@ const app=express()
 const server=http.createServer(app)
 const io= new Server(server,{
     cors:{
-        origin:[`${import.meta.env.VITE_CLIENT_URL}`],
+        origin:[`${process.env.VITE_CLIENT_URL}`],
         methods:["GET","POST"]
     }
 })
