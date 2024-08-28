@@ -17,22 +17,22 @@ export const SocketContextProvider = ({ children }) => {
     const currentUser = localStorage.getItem("userid");
     // console.log(currentUser)
     useEffect(() => {
-        // console.log("fetch",currentUser)
+        console.log("fetch",currentUser)
         const fetchData = async () => {
             try {
                 const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/GetUserDataById/${currentUser}`);
                 setUserData(res.data);
             } catch (err) {
-                console.error("Error fetching user data:", err);
+                console.log("Error fetching user data:", err);
             }
         };
         fetchData();
-    }, [])
+    }, [currentUser])
 
     useEffect(() => {
         const fetchData =  () => {
             if (userdata) {
-                    const socket = io(`${import.meta.env.VITE_SERVER_URL}`, {
+                    const socket = io(`http://localhost:5173`, {
                         query: {
                             userid: userdata._id
                         }
