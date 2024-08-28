@@ -32,7 +32,7 @@ export const SocketContextProvider = ({ children }) => {
     useEffect(() => {
         const fetchData =  () => {
             if (userdata) {
-                    const socket = io(`http://localhost:5173`, {
+                    const socket = io(`${import.meta.env.VITE_CLIENT_URL}`, {
                         query: {
                             userid: userdata._id
                         }
