@@ -7,9 +7,9 @@ import { SocketContextProvider } from './Context/socketcontext.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
     <BrowserRouter>
-    <SocketContextProvider>
+{/*     <SocketContextProvider> */}
       <App />
-    </SocketContextProvider>
+{/*     </SocketContextProvider> */}
     </BrowserRouter>
   // </React.StrictMode>
 )
