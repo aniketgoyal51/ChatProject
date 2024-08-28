@@ -14,7 +14,7 @@ function Signup() {
             .then((res) => {
                 console.log(res.data)
                 if (res.data === "user already exist") {
-                    // alert("user already exist")
+                    alert("user already exist")
                 }
                 else {
                     navigate('/chat')
