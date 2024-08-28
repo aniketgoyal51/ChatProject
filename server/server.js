@@ -16,6 +16,6 @@ mongoose.connect(process.env.VITE_DATABASE_URL,{
 app.use('/',Chat)
 
 
-server.listen(`${process.env.VITE_SERVER_URL}`, () => {
+server.listen(1000, () => {
     console.log('server is running on port 1000')
 })
