@@ -8,7 +8,7 @@ app.use(express.json())
 require("dotenv").config()
 
 app.use(cors({
-    origin:"http://chat-project-n1meirq12-aniketgoyal51s-projects.vercel.app",
+    origin:"http://chat-project-pma5gru5g-aniketgoyal51s-projects.vercel.app",
     credentials:true,
     methods: ["GET","POST"]
 }))
