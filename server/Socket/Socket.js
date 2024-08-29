@@ -6,7 +6,7 @@ const app=express()
 const server=http.createServer(app)
 
 const allowedOrigins = [
-  'http://chat-project-n1meirq12-aniketgoyal51s-projects.vercel.app',
+  'http://chat-project-pma5gru5g-aniketgoyal51s-projects.vercel.app',
   // other allowed origins can be added here
 ];
 
