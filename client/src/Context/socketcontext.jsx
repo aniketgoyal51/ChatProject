@@ -32,7 +32,7 @@ export const SocketContextProvider = ({ children }) => {
     useEffect(() => {
         const fetchData =  () => {
             if (userdata) {
-                    const socket = io('https://chatproject2.onrender.com', {
+                    const socket = io(`${import.meta.env.VITE_SERVER_URL}`, {
                         query: {
                             userid: userdata._id
                         }

@@ -5,14 +5,9 @@ const express = require("express")
 const app=express()
 const server=http.createServer(app)
 
-const allowedOrigins = [
-  'http://chat-project-pma5gru5g-aniketgoyal51s-projects.vercel.app',
-  // other allowed origins can be added here
-];
-
 const io= new Server(server,{
     cors:{
-        origin:allowedOrigins,
+        origin:`${process.env.VITE_CLIENT_URL}`,
         methods:["GET","POST"],
         credentials:true
     }
