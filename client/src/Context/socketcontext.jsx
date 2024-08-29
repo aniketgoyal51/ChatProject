@@ -32,7 +32,7 @@ export const SocketContextProvider = ({ children }) => {
     useEffect(() => {
         const fetchData =  () => {
             if (userdata) {
-                    const socket = io('http://chat-project-n1meirq12-aniketgoyal51s-projects.vercel.app', {
+                    const socket = io('https://chatproject2.onrender.com', {
                         query: {
                             userid: userdata._id
                         }
