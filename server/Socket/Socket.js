@@ -1,11 +1,9 @@
 const {Server} = require("socket.io")
 const http = require("http")
 const express = require("express")
-const cors=require('cors')
 
 const app=express()
 const server=http.createServer(app)
-app.use(cors())
 const io= new Server(server,{
     cors:{
         origin:[`${process.env.VITE_CLIENT_URL}`],
