@@ -10,14 +10,13 @@ export const useSocketContext = () => {
 }
 
 export const SocketContextProvider = ({ children }) => {
-    const [userdata, setUserData] = useState([]);
+    const [userdata, setUserData] = useState({});
     const [socket, setSocket] = useState(null)
-    const [onlineusers, setonlineusers] = useState([''])
+    const [onlineusers, setonlineusers] = useState([])
 
     const currentUser = localStorage.getItem("userid");
     // console.log(currentUser)
     useEffect(() => {
-        console.log("fetch",currentUser)
         const fetchData = async () => {
             try {
                 const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/GetUserDataById/${currentUser}`);
@@ -26,7 +25,7 @@ export const SocketContextProvider = ({ children }) => {
                 console.log("Error fetching user data:", err);
             }
         };
-        fetchData();
+        fetchData()
     }, [currentUser])
 
     useEffect(() => {
@@ -50,11 +49,9 @@ export const SocketContextProvider = ({ children }) => {
                     return () => socket.close();
             }
 
-            else {
-                if (socket) {
-                    socket.close()
-                    setSocket([])
-                }
+            else if (socket) {
+                socket.close()
+                setSocket(null)
             }
         }
         fetchData();

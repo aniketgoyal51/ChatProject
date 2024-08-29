@@ -14,8 +14,7 @@ function Chat() {
     const { message, setMessage } = Chatting()
     const [search, setSearch] = useState("");
     const [conversationerror, setconversationerror] = useState("");
-    const { onlineusers } = useSocketContext()
-    const { socket } = useSocketContext()
+    const { onlineusers , socket} = useSocketContext();
 
     const currentUser = localStorage.getItem("userid")
     const navigate = useNavigate();

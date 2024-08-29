@@ -20,7 +20,7 @@ function Login() {
                     localStorage.setItem("userid",res.data._id)
                 })
                 .catch((err)=>{console.log(err)})
-            console.log(data.email)
+            // console.log(data.email)
         navigate("/chat")
     }
 
