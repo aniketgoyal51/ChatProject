@@ -20,27 +20,26 @@ function Chat() {
     const navigate = useNavigate();
 
     const lastMessageRef=useRef()
-
     //last message ref
     useEffect(()=>{
         setTimeout(()=>{
             lastMessageRef.current?.scrollIntoView({behavior:"smooth"})
         },100)
     },[message])
-
+    
     // getting side bar chat users
     useEffect(() => {
         // console.log("data",currentUser)
         axios.get(`${import.meta.env.VITE_SERVER_URL}/GetUserData/${currentUser}`)
-            .then((res) => {
-                const data = res.data;
-                setUserData(data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        .then((res) => {
+            const data = res.data;
+            setUserData(data);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
     }, []);
-
+    
     // handle message send buttton and post the msg in backend
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -51,9 +50,9 @@ function Chat() {
                     return
                 }
                 await axios.post(`${import.meta.env.VITE_SERVER_URL}/SendMessage/${recieverid}`, { senderid: localStorage.getItem("userid"), msg })
-                    .then((res) => {
-                        setMessage([...message, res.data])
-                    })
+                .then((res) => {
+                    setMessage([...message, res.data])
+                })
                 // Clear the message input after sending
                 setmsg("");
             }
@@ -61,47 +60,50 @@ function Chat() {
             console.log(err);
         }
     };
-
+    
     // handle message get from server
     useEffect(() => {
         if (conversation) {
             const run = () => {
                 axios.get(`${import.meta.env.VITE_SERVER_URL}/${conversation._id}`, { params: { senderid: currentUser } })
-                    .then(async (res) => {
-                        // console.log(res.data)
-                        setconversationerror(null)
-                        setMessage(res.data)
-                    })
-                    .catch(async (err) => {
-                        setMessage([])
-                        setconversationerror(err)
-                    })
+                .then(async (res) => {
+                    // console.log(res.data)
+                    setconversationerror(null)
+                    setMessage(res.data)
+                })
+                .catch(async (err) => {
+                    setMessage([])
+                    setconversationerror(err)
+                })
             }
             run()
         }
     }, [conversation])
-
+    
     // handle process of sending messages
     const handleSend = (e) => {
         setmsg(e.target.value)
     };
-
-
+    
+    
     // listening of messages
     const useListenMessages = () => {
         useEffect(() => {
             socket?.on("newMessage", (newMessage) => {
                 setMessage([...message, newMessage])
             })
-
+            
             return () => {
                 socket?.off("newMessage")
             }
         }, [socket, setMessage, message])
     }
     useListenMessages()
-
-
+    
+    
+    // console.log(onlineusers)
+    // console.log(conversation)
+    // console.log(message)
     return (
         <div className={css.container}>
             <div className={css.chatmembers}>

@@ -7,6 +7,7 @@ function Login() {
     const { register, handleSubmit } = useForm()
     const navigate=useNavigate()
 
+    // console.log(import.meta.env.VITE_SERVER_URL)
     const onSubmit = async (data) => {
         await axios.post(`${import.meta.env.VITE_SERVER_URL}/login`, data)
             .then((res) => {
@@ -18,6 +19,7 @@ function Login() {
         await axios.get(`${import.meta.env.VITE_SERVER_URL}/GetCurrentUser/${data.email}`)
                 .then((res)=>{
                     localStorage.setItem("userid",res.data._id)
+                    console.log(res.data._id)
                 })
                 .catch((err)=>{console.log(err)})
             // console.log(data.email)

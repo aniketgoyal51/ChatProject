@@ -31,7 +31,7 @@ export const SocketContextProvider = ({ children }) => {
     useEffect(() => {
         const fetchData =  () => {
             if (userdata) {
-                    const socket = io(`${import.meta.env.VITE_SERVER_URL}`, {
+                    const socket = io(`http://localhost:1000`, {
                         query: {
                             userid: userdata._id
                         }
@@ -46,6 +46,11 @@ export const SocketContextProvider = ({ children }) => {
                         // console.log(onlineusers); // Note: onlineusers may not be updated immediately after calling setonlineusers due to closure.
                     });
 
+                    socket.on('receiveMessage', ({ senderId, message }) => {
+                        // Add the message to the chat UI
+                        addMessageToChat(senderId, message);
+                    });
+
                     return () => socket.close();
             }
 
@@ -55,8 +60,7 @@ export const SocketContextProvider = ({ children }) => {
             }
         }
         fetchData();
-    }, [userdata])
-    // console.log(onlineusers)
+    }, [userdata,]);
 
     return <SocketContext.Provider value={{ socket, onlineusers }}>{children}</SocketContext.Provider>
 }
