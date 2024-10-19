@@ -31,7 +31,7 @@ export const SocketContextProvider = ({ children }) => {
     useEffect(() => {
         const fetchData =  () => {
             if (userdata) {
-                    const socket = io(`http://localhost:1000`, {
+                    const socket = io(`http://chatproject2.onrender.com`, {
                         query: {
                             userid: userdata._id
                         }
